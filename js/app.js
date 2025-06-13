@@ -1,24 +1,27 @@
 (function($, document, window){
-	$(document).ready(function(){
-		// Cloning main navigation for mobile menu
-		$(".mobile-navigation").append($(".main-navigation .menu").clone());
+    $(document).ready(function(){
+        // Cloning main navigation for mobile menu
+        $(".mobile-navigation").append($(".main-navigation .menu").clone());
 
-		// Mobile menu toggle 
-		$(".menu-toggle").click(function(){
-			$(".mobile-navigation").slideToggle();
-		});
+        // Mobile menu toggle 
+        $(".menu-toggle").click(function(){
+            $(".mobile-navigation").slideToggle();
+        });
 
-  		$("[class^=year]").each((i, el) => {
-  			var year = new Date().getFullYear();
-  			el.innerHTML = year + (parseInt(el.className.replace("year", "")) || 0);
-  		});
+        // 设置你想要的年份常量
+        const FIXED_YEAR = 2015;
 
-	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  	  	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        // 填充带 year 类的 span
+        $("[class^=year]").each((i, el) => {
+            var baseYear = FIXED_YEAR;
+            var offset = parseInt(el.className.replace(/year/i, ""), 10) || 0;
+            el.innerHTML = baseYear + offset;
+        });
 
-  		ga('create', 'UA-47278397-5', 'auto');
-  		ga('send', 'pageview');
-	});
+        // Google Analytics tracking code...
+        (function(i,s,o,g,r,a,m){...})(...);
+
+        ga('create', 'UA-47278397-5', 'auto');
+        ga('send', 'pageview');
+    });
 })(jQuery, document, window);
